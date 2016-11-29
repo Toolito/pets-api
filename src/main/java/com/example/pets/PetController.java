@@ -1,15 +1,12 @@
 package com.example.pets;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:9100", maxAge = 3600)
 @RestController
 @RequestMapping("/pets")
 public class PetController {
@@ -17,7 +14,7 @@ public class PetController {
     private PetRepository repo;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Pet> listTodos() {
+    public List<Pet> list() {
         List<Pet> pets = new ArrayList<>();
         repo.findAll().forEach(pets::add);
 
